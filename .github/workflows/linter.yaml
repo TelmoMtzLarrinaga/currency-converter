@@ -1,0 +1,45 @@
+# The following workflow will only run when a pull request is made that includes
+# a change to a Markdown (*.md) file.
+name: Markdown linter
+on:
+  pull_request:
+    paths:
+      - '**.md'
+
+permissions: {}
+
+jobs:
+  build:
+    name: Markdown linter
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+  
+    steps:
+    - name: Markdown linter
+      run: echo "Running a linter action for Markdown 🚀"
+    
+    - name: Repository checkout
+      uses: actions/checkout@v4
+      with:
+        # Super-linter needs the full git history to get the list of files 
+        # that changed across commits
+        fetch-depth: 0
+
+    - name: Linter markdown file
+      uses: super-linter/super-linter@v7.2.1
+      env:
+        # To report GitHub Actions status checks
+        # At the start of each workflow job, GitHub automatically creates a 
+        # unique GITHUB_TOKEN
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # When set to false, only new or edited files will be parsed
+        VALIDATE_ALL_CODEBASE: false
+        # Filename for Markdownlint configuration
+        MARKDOWN_CONFIG_FILE: .markdown-lint.yml
+        # Flag to enable the linting process of the Markdown language
+        VALIDATE_MARKDOWN: true
