@@ -1,6 +1,6 @@
 # Currency Converter
 
-![Super-Linter](https://github.com/TelmoMtzLarrinaga/currencry-converter/actions/workflows/linter.yaml/badge.svg)
+[![Super-Linter](https://github.com/TelmoMtzLarrinaga/currency-converter/actions/workflows/linter.yaml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 We'll need to convert between a number of base currencies.
 The user will be able to select the different currencies through the `huh?` package and we'll need to use a third party API in order to obtain currency conversion data.
