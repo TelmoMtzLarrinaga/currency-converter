@@ -2,6 +2,9 @@
 # a change to a Markdown (*.md) file.
 name: Markdown linter
 on:
+  push:
+    branches:
+      - main 
   pull_request:
     paths:
       - '**.md'
