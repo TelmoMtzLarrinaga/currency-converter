@@ -1,5 +1,6 @@
 # Currency Converter
 
+[![Go Report Card](https://goreportcard.com/badge/TelmoMtzLarrinaga/currency-converter)](https://goreportcard.com/report/TelmoMtzLarrinaga/currency-converter)
 [![Super-Linter](https://github.com/TelmoMtzLarrinaga/currency-converter/actions/workflows/linter.yaml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 We'll need to convert between a number of base currencies.
