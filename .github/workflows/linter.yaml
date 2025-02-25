@@ -1,6 +1,6 @@
 # The following workflow will only run when a pull request is made that includes
-# a change to a Markdown (*.md) file.
-name: Markdown linter
+# a change to a Markdown (*.md) file or when is pushed into main.
+name: markdown-lint
 on:
   push:
     branches:
@@ -22,10 +22,7 @@ jobs:
       # To report GitHub Actions status checks
       statuses: write
   
-    steps:
-    - name: Markdown linter
-      run: echo "Running a linter action for Markdown 🚀"
-    
+    steps: 
     - name: Repository checkout
       uses: actions/checkout@v4
       with:

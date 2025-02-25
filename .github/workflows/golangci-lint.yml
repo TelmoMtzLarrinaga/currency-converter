@@ -1,0 +1,32 @@
+# The following workflow will only run when a pull request is made that includes
+# a change to a Go (*.go) file, or when its pushed into main.
+name: golangci-lint
+on:
+  push:
+    branches:
+      - main 
+  pull_request:
+    paths:
+      - '**.go'
+
+permissions:
+  contents: read
+
+jobs:
+  golangci:
+    name: Golangci Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@v4
+
+      - name: Set Up Golang 
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Golangci-Lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.64

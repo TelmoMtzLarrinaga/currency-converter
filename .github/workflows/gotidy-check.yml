@@ -1,0 +1,25 @@
+# The following workflow will only run when a pull request is made that includes
+# a change to a Go (*.go) file, or when its pushed into main.
+name: go-tidy-check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '**.go'
+
+jobs:
+  build:
+    name: Go Mod Tidy Check
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Repostiry Checkout
+        uses: actions/checkout@v4
+
+      - name: Set Up Golang
+        uses: actions/setup-go@v4 # Go must be at least version 1.21
+      
+      - name: Go Mod Tidy Check
+        uses: katexochen/go-tidy-check@v2
