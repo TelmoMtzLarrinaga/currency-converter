@@ -66,7 +66,8 @@ func newExchangeSubcommand() *ff.Command {
 
 			// create new logger with specified allowed level
 			logger := zap.Must(logCfg.Build())
-			defer logger.Sync()
+
+			logger.Debug("All working as expected.")
 
 			return nil
 		},
