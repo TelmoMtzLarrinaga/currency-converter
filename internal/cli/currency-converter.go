@@ -2,8 +2,10 @@ package currencyconverter
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/TelmoMtzLarrinaga/currency-converter/internal/exchange"
+	tea "github.com/charmbracelet/bubbletea"
 	"github.com/peterbourgon/ff/v4"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -65,10 +67,13 @@ func newExchangeSubcommand() *ff.Command {
 			}
 
 			// create new logger with specified allowed level
-			logger := zap.Must(logCfg.Build())
+			cfg.Logger = zap.Must(logCfg.Build())
 
-			logger.Debug("All working as expected.")
-
+			// run the currency-converter bubble tea program
+			p := tea.NewProgram(exchange.InitialModel(cfg))
+			if _, err := p.Run(); err != nil {
+				return fmt.Errorf("cli: error running the currency-converter bubble tea program: %w", err)
+			}
 			return nil
 		},
 	}
