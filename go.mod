@@ -3,14 +3,15 @@ module github.com/TelmoMtzLarrinaga/currency-converter
 go 1.24.0
 
 require (
+	github.com/charmbracelet/bubbles v0.20.0
 	github.com/charmbracelet/bubbletea v1.3.4
+	github.com/charmbracelet/lipgloss v1.0.0
 	github.com/peterbourgon/ff/v4 v4.0.0-alpha.4
 	go.uber.org/zap v1.27.0
 )
 
 require (
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
-	github.com/charmbracelet/lipgloss v1.0.0 // indirect
 	github.com/charmbracelet/x/ansi v0.8.0 // indirect
 	github.com/charmbracelet/x/term v0.2.1 // indirect
 	github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f // indirect
