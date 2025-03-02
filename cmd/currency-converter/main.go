@@ -35,6 +35,4 @@ func main() {
 		fmt.Printf("%s\n", ffhelp.Command(cmd))
 		return
 	}
-
-	logger.Info("Thanks For Using The Currency Converter.")
 }
