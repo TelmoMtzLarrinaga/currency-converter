@@ -53,7 +53,8 @@ func newExchangeSubcommand() *ff.Command {
 
 	// define the flags under exchange subcommand
 	_ = fs.StringLong("config", "cc.config", "Config file (optional)")
-	fs.BoolVarDefault(&cfg.Debug, '0', "debug", false, "Debug log level")
+	fs.BoolVarDefault(&cfg.Debug, 'd', "debug", false, "Debug log level")
+	fs.Float64Var(&cfg.Quantity, 'q', "quantity", 0, "Quantity to convert to: [$,¥,€,£]")
 
 	return &ff.Command{
 		Name:      "exchange",

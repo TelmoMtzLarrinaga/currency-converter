@@ -9,10 +9,12 @@ import (
 
 // model will store our applications state.
 type model struct {
-	logger *zap.Logger
-	table  table.Model
-	keys   keyMap
-	help   help.Model
+	logger   *zap.Logger
+	table    table.Model
+	keys     keyMap
+	help     help.Model
+	quantity float64
+	quote    table.Row
 }
 
 // Init is the first function that will be called. It can return an optional
@@ -45,8 +47,9 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.help.ShowAll = !m.help.ShowAll
 		// Show currency-converter programn
 		case " ":
+			m.quote = m.table.SelectedRow()
 			return m, tea.Batch(
-				tea.Println("This is a test return."),
+				tea.Println(m.quote, m.quantity),
 			)
 		}
 	}
@@ -65,9 +68,10 @@ func (m model) View() string {
 // We will define our applications initial state which is just a
 func InitialModel(cfg *Config) model {
 	return model{
-		logger: cfg.Logger,
-		table:  newTable(),
-		keys:   keys,
-		help:   help.New(),
+		logger:   cfg.Logger,
+		table:    newTable(),
+		keys:     keys,
+		help:     help.New(),
+		quantity: cfg.Quantity,
 	}
 }
