@@ -10,7 +10,7 @@ var baseStyle = lipgloss.NewStyle().
 	BorderForeground(lipgloss.Color("#c2f2d0")) // * #c2f2d0
 
 var columns []table.Column = []table.Column{
-	{Title: "COUNTRY", Width: 10},
+	{Title: "COUNTRY", Width: 15},
 	{Title: "CURRENCY", Width: 15},
 	{Title: "UNIT", Width: 5},
 }
