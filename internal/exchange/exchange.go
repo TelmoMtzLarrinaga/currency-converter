@@ -1,6 +1,9 @@
 package exchange
 
 import (
+	"encoding/json"
+	"net/http"
+
 	"github.com/charmbracelet/bubbles/help"
 	"github.com/charmbracelet/bubbles/table"
 	tea "github.com/charmbracelet/bubbletea"
@@ -47,10 +50,15 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.help.ShowAll = !m.help.ShowAll
 		// Show currency-converter programn
 		case " ":
+			// Parse obtained row for currency.
 			m.quote = m.table.SelectedRow()
-			return m, tea.Batch(
-				tea.Println(m.quote, m.quantity),
-			)
+			quoteBytes := parse(m.logger, m.quote)
+
+			// Make http request
+			_, err := request(m.logger, m.quantity, quoteBytes) // TODO show value on table
+			if err != http.StatusOK {
+				return m, tea.Quit
+			}
 		}
 	}
 	m.table, cmd = m.table.Update(msg)
@@ -74,4 +82,18 @@ func InitialModel(cfg *Config) model {
 		help:     help.New(),
 		quantity: cfg.Quantity,
 	}
+}
+
+// parse parses the row into json encoding
+func parse(logger *zap.Logger, row table.Row) []byte {
+	if empty := len(row) > 0; !empty {
+		logger.Error("exchange: row value is empty")
+	}
+
+	res, err := json.Marshal(row)
+	if err != nil {
+		logger.Error("exchange: couldn't marshal into JSON []byte: ", zap.Error(err))
+	}
+
+	return res
 }

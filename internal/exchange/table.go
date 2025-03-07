@@ -16,10 +16,10 @@ var columns []table.Column = []table.Column{
 }
 
 var rows []table.Row = []table.Row{
-	{"United States", "The Dollar", "$"},
-	{"Japan", "Japanese Yen", "¥"},
-	{"Spain", "Euro", "€"},
-	{"England", "Pound Sterling", "£"},
+	{"United States", "The Dollar", "USD"},
+	{"Japan", "Japanese Yen", "JPY"},
+	{"Spain", "Euro", "EUR"},
+	{"England", "Pound Sterling", "GBP"},
 }
 
 // newTable returns a bubbletea table model with a custom format.
