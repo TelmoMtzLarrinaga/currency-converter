@@ -55,6 +55,7 @@ func newExchangeSubcommand() *ff.Command {
 	_ = fs.StringLong("config", "cc.config", "Config file (optional)")
 	fs.BoolVarDefault(&cfg.Debug, 'd', "debug", false, "Debug log level")
 	fs.Float64Var(&cfg.Quantity, 'q', "quantity", 0, "Quantity to convert to: [$,¥,€,£]")
+	fs.StringVar(&cfg.ID, '0', "app-id", "", "Open exchange rates APP ID.")
 
 	return &ff.Command{
 		Name:      "exchange",
